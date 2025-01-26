@@ -21,6 +21,3 @@ services:
     environment:
       POSTGRES_PASSWORD: password # Replace with a strong password
       PGDATA: /var/lib/postgresql/data
-
-      # Optional: Customize TimescaleDB settings
-      # TIMESCALEDB_TELEMETRY_ENABLED: off  # Disable telemetry if desired
