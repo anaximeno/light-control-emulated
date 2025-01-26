@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  nodered:
+    image: nodered/node-red:latest
+    container_name: r-nodered
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered_data:/data
+    environment:
+      TZ: "Atlantic/Cape_Verde"
+    depends_on:
+      - timescaledb
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg17
+    container_name: r-timescaledb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./timescaledb_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password # Replace with a strong password
+      PGDATA: /var/lib/postgresql/data
+
+      # Optional: Customize TimescaleDB settings
+      # TIMESCALEDB_TELEMETRY_ENABLED: off  # Disable telemetry if desired

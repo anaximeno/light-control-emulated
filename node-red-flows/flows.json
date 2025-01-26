@@ -1,0 +1,871 @@
+[
+    {
+        "id": "816842c9e9366ee7",
+        "type": "tab",
+        "label": "ESP32 LightSensor Control Flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "518596cfd0a97fb8",
+        "type": "tab",
+        "label": "UI",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fb24424d251e1865",
+        "type": "tab",
+        "label": "LightSensor DB",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "795e30ec0b196f06",
+        "type": "mqtt-broker",
+        "name": "HiveMQ",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1921ada18576956b",
+        "type": "mqtt-broker",
+        "name": "EMQX",
+        "broker": "broker.emqx.io",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "530c8d668caa86ee",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "dd11fdc0147ec391",
+        "type": "ui_tab",
+        "name": "demo",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "8b85d9117f7ce129",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f87ef2c73939f40c",
+        "type": "ui_group",
+        "name": "button",
+        "tab": "dd11fdc0147ec391",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b6eb07a0944c45ea",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "8b85d9117f7ce129",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "29157043f2bb8998",
+        "type": "ui_group",
+        "name": "Gráfico",
+        "tab": "8b85d9117f7ce129",
+        "order": 2,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "312f3f6c0ba11488",
+        "type": "postgreSQLConfig",
+        "name": "TimescaleDBConnection",
+        "host": "r-timescaledb",
+        "hostFieldType": "str",
+        "port": 5432,
+        "portFieldType": "num",
+        "database": "postgres",
+        "databaseFieldType": "str",
+        "ssl": "false",
+        "sslFieldType": "bool",
+        "applicationName": "",
+        "applicationNameType": "str",
+        "max": 10,
+        "maxFieldType": "num",
+        "idle": 1000,
+        "idleFieldType": "num",
+        "connectionTimeout": 10000,
+        "connectionTimeoutFieldType": "num",
+        "user": "postgres",
+        "userFieldType": "str",
+        "password": "password",
+        "passwordFieldType": "str"
+    },
+    {
+        "id": "af677feb31d9ee6e",
+        "type": "inject",
+        "z": "816842c9e9366ee7",
+        "name": "Enable Blue Led Signal",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "color",
+                "v": "blue",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 260,
+        "y": 40,
+        "wires": [
+            [
+                "8a5af5b4cb3ee17c"
+            ]
+        ]
+    },
+    {
+        "id": "daed3948db0999f2",
+        "type": "mqtt out",
+        "z": "816842c9e9366ee7",
+        "name": "MQTT xa/wokwi/esp32",
+        "topic": "",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "1921ada18576956b",
+        "x": 940,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "cf759ba20ce46a4a",
+        "type": "mqtt in",
+        "z": "816842c9e9366ee7",
+        "name": "",
+        "topic": "xa/wokwi/esp32/sensor/light",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "1921ada18576956b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 700,
+        "y": 420,
+        "wires": [
+            [
+                "21eb25cbf8aa0a02"
+            ]
+        ]
+    },
+    {
+        "id": "ac40214b3a663a91",
+        "type": "debug",
+        "z": "816842c9e9366ee7",
+        "name": "Sensor Light Data Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "21eb25cbf8aa0a02",
+        "type": "csv",
+        "z": "816842c9e9366ee7",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\r\\n",
+        "temp": "timestamp,lux,percent",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 950,
+        "y": 420,
+        "wires": [
+            [
+                "ac40214b3a663a91",
+                "79a3c2d25f9efedf"
+            ]
+        ]
+    },
+    {
+        "id": "8a5af5b4cb3ee17c",
+        "type": "function",
+        "z": "816842c9e9366ee7",
+        "name": "Handle Led Switch",
+        "func": "msg.topic = \"xa/wokwi/esp32/led/\" + msg.color + \"/switch\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 200,
+        "wires": [
+            [
+                "daed3948db0999f2"
+            ]
+        ]
+    },
+    {
+        "id": "2631502825af19c5",
+        "type": "inject",
+        "z": "816842c9e9366ee7",
+        "name": "Disable Blue Led Signal",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "color",
+                "v": "blue",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "8a5af5b4cb3ee17c"
+            ]
+        ]
+    },
+    {
+        "id": "c20afac6853046c9",
+        "type": "inject",
+        "z": "816842c9e9366ee7",
+        "name": "Enable Red Led Signal",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "color",
+                "v": "red",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "8a5af5b4cb3ee17c"
+            ]
+        ]
+    },
+    {
+        "id": "f0bc6efbe7767398",
+        "type": "inject",
+        "z": "816842c9e9366ee7",
+        "name": "Disable Red Led Signal",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "color",
+                "v": "red",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 260,
+        "y": 220,
+        "wires": [
+            [
+                "8a5af5b4cb3ee17c"
+            ]
+        ]
+    },
+    {
+        "id": "9e0e7c735a69bcd6",
+        "type": "inject",
+        "z": "816842c9e9366ee7",
+        "name": "Enable Green Led Signal",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "color",
+                "v": "green",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "8a5af5b4cb3ee17c"
+            ]
+        ]
+    },
+    {
+        "id": "2050d135facc101c",
+        "type": "inject",
+        "z": "816842c9e9366ee7",
+        "name": "Disable Green Led Signal",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "color",
+                "v": "green",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 270,
+        "y": 340,
+        "wires": [
+            [
+                "8a5af5b4cb3ee17c"
+            ]
+        ]
+    },
+    {
+        "id": "79a3c2d25f9efedf",
+        "type": "function",
+        "z": "816842c9e9366ee7",
+        "name": "Vectorize",
+        "func": "const {lux, percent} = msg.payload;\nmsg.params = [lux, percent];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 500,
+        "wires": [
+            [
+                "c2ce47fd247beda0"
+            ]
+        ]
+    },
+    {
+        "id": "2564dd7ec2d7c315",
+        "type": "mqtt in",
+        "z": "816842c9e9366ee7",
+        "name": "",
+        "topic": "xa/wokwi/esp32/led/status",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "1921ada18576956b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 710,
+        "y": 700,
+        "wires": [
+            [
+                "ab59a19dcf7c7dab"
+            ]
+        ]
+    },
+    {
+        "id": "ab59a19dcf7c7dab",
+        "type": "csv",
+        "z": "816842c9e9366ee7",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\r\\n",
+        "temp": "timestamp,color,status",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 950,
+        "y": 700,
+        "wires": [
+            [
+                "ea50f6bef7fdfcd2",
+                "ff70c275fa378e6a"
+            ]
+        ]
+    },
+    {
+        "id": "ea50f6bef7fdfcd2",
+        "type": "debug",
+        "z": "816842c9e9366ee7",
+        "name": "Sensor LED Status Data Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1210,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "ff70c275fa378e6a",
+        "type": "function",
+        "z": "816842c9e9366ee7",
+        "name": "Vectorize",
+        "func": "const {color, status} = msg.payload;\nmsg.params = [color, status];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 760,
+        "wires": [
+            [
+                "792893f26af30ae9"
+            ]
+        ]
+    },
+    {
+        "id": "c2ce47fd247beda0",
+        "type": "postgresql",
+        "z": "816842c9e9366ee7",
+        "name": "Log Lux Data Into TSDB",
+        "query": "-- Insert a new row into the sensor_data table\nINSERT INTO wokwi_esp32_light_sensor_data (time, lux, percent)\nVALUES (now(), $1, $2);",
+        "postgreSQLConfig": "312f3f6c0ba11488",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1370,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "792893f26af30ae9",
+        "type": "postgresql",
+        "z": "816842c9e9366ee7",
+        "name": "Log Lux Data Into TSDB",
+        "query": "-- Insert a new row into the sensor_data table\nINSERT INTO wokwi_esp32_led_status (time, color, status)\nVALUES (now(), $1, $2);",
+        "postgreSQLConfig": "312f3f6c0ba11488",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1370,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0bd1eb3e74556f21",
+        "type": "inject",
+        "z": "518596cfd0a97fb8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "3ca94abbcf6efeaa"
+            ]
+        ]
+    },
+    {
+        "id": "8a9004ed4d71c712",
+        "type": "debug",
+        "z": "518596cfd0a97fb8",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "e2b58d0f2046b229",
+        "type": "function",
+        "z": "518596cfd0a97fb8",
+        "name": "Get Last Percent",
+        "func": "let value = 0;\nif (msg.payload.length > 0) {\n    const { time, lux, percent } = msg.payload[0];\n    value = percent;\n}\nmsg.payload = value;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 240,
+        "wires": [
+            [
+                "1086bee21514c7f9"
+            ]
+        ]
+    },
+    {
+        "id": "1086bee21514c7f9",
+        "type": "range",
+        "z": "518596cfd0a97fb8",
+        "minin": "0",
+        "maxin": "1",
+        "minout": "0",
+        "maxout": "100",
+        "action": "scale",
+        "round": false,
+        "property": "payload",
+        "name": "",
+        "x": 940,
+        "y": 240,
+        "wires": [
+            [
+                "6e3eb3eb7650da72"
+            ]
+        ]
+    },
+    {
+        "id": "6e3eb3eb7650da72",
+        "type": "ui_gauge",
+        "z": "518596cfd0a97fb8",
+        "name": "",
+        "group": "b6eb07a0944c45ea",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "gtype": "wave",
+        "title": "Luminosidade",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1120,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3ca94abbcf6efeaa",
+        "type": "postgresql",
+        "z": "518596cfd0a97fb8",
+        "name": "",
+        "query": "select * from wokwi_esp32_light_sensor_data welsd where \"time\" > now() - interval '1 hours' order by time desc;",
+        "postgreSQLConfig": "312f3f6c0ba11488",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 530,
+        "y": 120,
+        "wires": [
+            [
+                "8a9004ed4d71c712",
+                "e2b58d0f2046b229"
+            ]
+        ]
+    },
+    {
+        "id": "fb62e923391202f2",
+        "type": "debug",
+        "z": "fb24424d251e1865",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "058d01d46566ac15",
+        "type": "inject",
+        "z": "fb24424d251e1865",
+        "name": "Create hypertable",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "161d85e266a88fc4"
+            ]
+        ]
+    },
+    {
+        "id": "161d85e266a88fc4",
+        "type": "postgresql",
+        "z": "fb24424d251e1865",
+        "name": "",
+        "query": "-- Create a standard PostgreSQL table\nCREATE TABLE wokwi_esp32_led_status (\n        time TIMESTAMPTZ NOT NULL,\n        color VARCHAR(32) NOT NULL,\n        status INT\n);\n\nCREATE TABLE wokwi_esp32_light_sensor_data (\n        time TIMESTAMPTZ NOT NULL,\n        lux FLOAT,\n        percent FLOAT\n);\n\n-- Convert the table into a hypertable for efficient time-series data management\nSELECT create_hypertable('wokwi_esp32_light_sensor_data', 'time');\nSELECT create_hypertable('wokwi_esp32_led_status', 'time');",
+        "postgreSQLConfig": "312f3f6c0ba11488",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "fb62e923391202f2"
+            ]
+        ]
+    }
+]
