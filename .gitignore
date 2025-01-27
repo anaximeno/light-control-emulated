@@ -1,4 +1,2 @@
-timescaledb_data/*
-!timescaledb_data/.gitkeep
-nodered_data/*
-!nodered_data/.gitkeep
+timescaledb_data/
+nodered_data/
