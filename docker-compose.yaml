@@ -5,19 +5,26 @@ services:
     ports:
       - "1880:1880"
     volumes:
-      - ./nodered_data:/data
+      - nodered_data:/data
     environment:
       TZ: "Atlantic/Cape_Verde"
     depends_on:
       - timescaledb
+    restart: unless-stopped
 
   timescaledb:
     image: timescale/timescaledb:latest-pg17
     container_name: r-timescaledb
-    ports:
+    expose:
       - "5432:5432"
     volumes:
-      - ./timescaledb_data:/var/lib/postgresql/data
+      - timescaledb_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: password # Replace with a strong password
+      POSTGRES_PASSWORD: password
       PGDATA: /var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  nodered_data:
+  timescaledb_data:
+
