@@ -16,12 +16,12 @@ docker compose stop
 
 ### NodeRed Setup
 
-Instrall the following node-red plugins after configuring it:
+Install the following node-red plugins after configuring it:
 
 - node-red-dashboard
 - node-red-contrib-postgresql
 
-Then configure the postgresql connection to the timescale db using the params in [docker-compose.yaml](./docker-compose.yaml).
+Then configure the postgresql connection to the timescale db using the params in [docker-compose.yaml](./docker-compose.yaml) and import the file [flows.json](./node-red-flows/flows.json) with the relevant node-red flows for the system.
 
 ### Run the Simulation
 
